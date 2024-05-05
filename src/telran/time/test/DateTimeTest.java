@@ -11,8 +11,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.Temporal;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DateTimeTest {
 
@@ -28,6 +27,10 @@ public class DateTimeTest {
         NextFriday13 nextFriday13 = new NextFriday13();
         LocalDate expected = LocalDate.of(2024, 9, 13);
         assertEquals(expected, nextFriday13.adjustInto((LocalDate.from(LocalDate.now()))));
+        LocalDate expected1 = LocalDate.of(2024,12,13);
+        assertEquals(expected1, nextFriday13.adjustInto((LocalDate.from(LocalDate.of(2024,9, 14)))));
+        LocalDate wrongDate = LocalDate.of(2024,12,20);
+        assertNotEquals(wrongDate, nextFriday13.adjustInto((LocalDate.from(LocalDate.of(2024,9, 14)))));
     }
 
     @Test
